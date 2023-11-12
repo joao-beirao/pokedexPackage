@@ -1,7 +1,10 @@
 package joaob.API;
 
 import java.io.BufferedReader;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.ObjectOutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -42,11 +45,14 @@ public class APIHandler {
         return data;
     }
 
-    private void saveToFile(String filename){
-        
+    public void saveToFile(String filename) throws IOException{
+
+            ObjectOutputStream file = new ObjectOutputStream(new FileOutputStream(filename+".dat"));
+            file.writeObject(data);
+            file.flush();
+            file.close();
+
     }
 
-    public void main(String[] args) {
-        
-    }
+
 }
